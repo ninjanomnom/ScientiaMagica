@@ -1,0 +1,36 @@
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ScientiaMagica.Common", "ScientiaMagica.Common\ScientiaMagica.Common.csproj", "{0D3ABA3F-CFFA-484F-A90C-5ED5290CAED8}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Godot", "Godot", "{55FF7236-400D-4C5B-B6C6-9D372284D705}"
+ProjectSection(SolutionItems) = preProject
+	project.godot = project.godot
+EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ScientiaMagica", "ScientiaMagica.csproj", "{7CB5F30C-6B4C-47C5-8136-E4BC72FCF9F2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ScientiaMagica.PluginLoader", "ScientiaMagica.PluginLoader\ScientiaMagica.PluginLoader.csproj", "{88643EFB-9B3A-467D-9D4D-0A63621FDBC8}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+	Debug|Any CPU = Debug|Any CPU
+	ExportDebug|Any CPU = ExportDebug|Any CPU
+	ExportRelease|Any CPU = ExportRelease|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{0D3ABA3F-CFFA-484F-A90C-5ED5290CAED8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0D3ABA3F-CFFA-484F-A90C-5ED5290CAED8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0D3ABA3F-CFFA-484F-A90C-5ED5290CAED8}.ExportDebug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0D3ABA3F-CFFA-484F-A90C-5ED5290CAED8}.ExportDebug|Any CPU.Build.0 = Debug|Any CPU
+		{0D3ABA3F-CFFA-484F-A90C-5ED5290CAED8}.ExportRelease|Any CPU.ActiveCfg = Debug|Any CPU
+		{0D3ABA3F-CFFA-484F-A90C-5ED5290CAED8}.ExportRelease|Any CPU.Build.0 = Debug|Any CPU
+		{7CB5F30C-6B4C-47C5-8136-E4BC72FCF9F2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7CB5F30C-6B4C-47C5-8136-E4BC72FCF9F2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{88643EFB-9B3A-467D-9D4D-0A63621FDBC8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{88643EFB-9B3A-467D-9D4D-0A63621FDBC8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{88643EFB-9B3A-467D-9D4D-0A63621FDBC8}.ExportDebug|Any CPU.ActiveCfg = Debug|Any CPU
+		{88643EFB-9B3A-467D-9D4D-0A63621FDBC8}.ExportDebug|Any CPU.Build.0 = Debug|Any CPU
+		{88643EFB-9B3A-467D-9D4D-0A63621FDBC8}.ExportRelease|Any CPU.ActiveCfg = Debug|Any CPU
+		{88643EFB-9B3A-467D-9D4D-0A63621FDBC8}.ExportRelease|Any CPU.Build.0 = Debug|Any CPU
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,14 @@
+
+.idea/
+
+.mono/temp/
+
+ScienciaMagica/.mono/temp/
+
+ScientiaMagica.Common/bin/
+
+ScientiaMagica.Common/obj/
+
+ScientiaMagica.PluginLoader/bin/
+
+ScientiaMagica.PluginLoader/obj/

@@ -1,9 +1,27 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using JetBrains.Annotations;
+using Ninject;
 
 namespace ScientiaMagica.Common.Loader {
     public interface IPlugin {
+        [NotNull]
         PluginIdentifier Info { get; }
+        [CanBeNull]
+        IEnumerable<PluginIdentifier> Dependencies { get; }
+        [CanBeNull]
+        IEnumerable<PluginIdentifier> Incompatible { get; }
+        [CanBeNull]
+        IEnumerable<PluginIdentifier> LoadAfter { get; }
+        [CanBeNull]
+        IEnumerable<PluginIdentifier> LoadBefore { get; }
 
+        /// <summary>
+        /// This initialization function gets run concurrently along side every other plugin<br/>
+        /// Do only internal setup or bad things happen
+        /// </summary>
+        void Initialize();
+        
         /// <summary>
         /// Full integration setup for the plugin<br/>
         /// This gets run sequentially according to the dependency tree<br/>

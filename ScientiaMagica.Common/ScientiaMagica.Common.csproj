@@ -48,7 +48,7 @@
         <Compile Include="src\Loader\Controllers\IWorldInitializer.cs" />
         <Compile Include="src\Loader\Controllers\IWorldTicker.cs" />
         <Compile Include="src\Loader\Controllers\TickFlags.cs" />
-        <Compile Include="src\Loader\DefaultPlugin.cs" />
+        <Compile Include="src\Loader\InjectedPlugin.cs" />
         <Compile Include="src\Loader\Exceptions\CircularReferencePluginException.cs" />
         <Compile Include="src\Loader\Exceptions\PluginException.cs" />
         <Compile Include="src\Loader\Exceptions\IncompatiblePluginException.cs" />
@@ -57,7 +57,6 @@
         <Compile Include="src\Loader\Exceptions\PluginInitializationException.cs" />
         <Compile Include="src\Loader\IPlugin.cs" />
         <Compile Include="src\Loader\IPluginManager.cs" />
-        <Compile Include="src\Loader\PluginFactory.cs" />
         <Compile Include="src\Loader\PluginIdentifier.cs" />
     </ItemGroup>
     <ItemGroup>

@@ -17,6 +17,7 @@ namespace ScientiaMagica {
             }
             catch (Exception e) {
                 logger.Fatal(e, "An unknown exception occured while loading plugins");
+                throw;
             }
 
             try {
@@ -24,6 +25,7 @@ namespace ScientiaMagica {
             }
             catch (Exception e) {
                 logger.Fatal(e, "An unknown exception occured while initializing the game");
+                throw;
             }
         }
     }

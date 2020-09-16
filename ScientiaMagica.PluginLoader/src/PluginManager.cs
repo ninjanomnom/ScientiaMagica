@@ -17,27 +17,27 @@ namespace ScientiaMagica.PluginLoader {
         private readonly List<PluginIdentifier> _missingDependencies = new List<PluginIdentifier>();
         public IReadOnlyCollection<PluginIdentifier> MissingDependencies { get; }
 
-        private readonly SortedSet<PluginFactory> _sortedPlugins =
-            new SortedSet<PluginFactory>(new PluginOrderComparer());
+        private readonly SortedSet<IPlugin> _sortedPlugins =
+            new SortedSet<IPlugin>(new PluginOrderComparer());
 
         public PluginManager() {
             MissingDependencies = new ReadOnlyCollection<PluginIdentifier>(_missingDependencies);
         }
         
-        public void AddPlugin(PluginFactory factory) {
+        public void AddPlugin(IPlugin plugin) {
             if (_loaded) {
                 // TODO: Exception for already having loaded plugins
                 throw new NotImplementedException();
             }
 
-            if ((factory.Dependencies?.Any()).GetValueOrDefault(false)) {
-                TrackDependencies(factory, factory.Dependencies);
+            if ((plugin.Dependencies?.Any()).GetValueOrDefault(false)) {
+                TrackDependencies(plugin, plugin.Dependencies);
             }
 
-            _sortedPlugins.Add(factory);
+            _sortedPlugins.Add(plugin);
         }
 
-        private void TrackDependencies(PluginFactory dependent, IEnumerable<PluginIdentifier> dependencies) {
+        private void TrackDependencies(IPlugin dependent, IEnumerable<PluginIdentifier> dependencies) {
             _missingDependencies.Remove(dependent.Info);
             
             foreach (var dependency in dependencies) {
@@ -54,24 +54,27 @@ namespace ScientiaMagica.PluginLoader {
             }
         }
 
-        public IEnumerable<IPlugin> LoadPlugins(IKernel kernel) {
-            if (!_missingDependencies.Any()) {
+        public void LoadPlugins(IKernel kernel) {
+            if (_missingDependencies.Any()) {
                 // TODO: Missing dependencies exception
                 throw new NotImplementedException();
             }
 
             InitializePlugins(kernel);
             _loaded = true;
-            return _sortedPlugins.Select(f => f.Get());
+            var initializedPlugins = _sortedPlugins.ToDictionary(p => p.Info, p => p);
+            foreach (var plugin in _sortedPlugins) {
+                plugin.LoadPlugin(initializedPlugins);
+            }
         }
 
         private void InitializePlugins(IKernel kernel) {
-            void InitializePlugin(PluginFactory factory) {
+            void InitializePlugin(IPlugin plugin) {
                 try {
-                    factory.Initialize(kernel);
+                    plugin.Initialize();
                 }
                 catch (Exception e) {
-                    throw new PluginInitializationException($"{factory.Info} errored during initialization.", e);
+                    throw new PluginInitializationException($"{plugin.Info} errored during initialization.", e);
                 }
             }
             

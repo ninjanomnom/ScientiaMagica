@@ -1,7 +1,10 @@
-﻿using System;
+using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Reflection;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using Godot;
 using Ninject;
@@ -9,9 +12,15 @@ using NLog;
 using ScientiaMagica.Common.Loader;
 using ScientiaMagica.Common.Loader.Controllers;
 using ScientiaMagica.Common.Loader.Exceptions;
+using Directory = System.IO.Directory;
+using File = Godot.File;
+using Path = System.IO.Path;
 
 namespace ScientiaMagica.Setup {
     public class Setup {
+        private static readonly Regex CorePlugins = new Regex(@"ScientiaMagica\..*\.dll");
+        private static readonly Regex ExternalPlugins = new Regex(@"Plugins");
+        
         private readonly StandardKernel _kernel;
         private readonly ILogger _logger;
 
@@ -24,14 +33,21 @@ namespace ScientiaMagica.Setup {
         public void LoadPlugins() {
             LoadDependencies();
             var pluginManager = _kernel.Get<IPluginManager>();
-            foreach (var factory in _kernel.GetAll<PluginFactory>()) {
-                pluginManager.AddPlugin(factory);
+            foreach (var plugin in _kernel.GetAll<IPlugin>()) {
+                pluginManager.AddPlugin(plugin);
             }
             pluginManager.LoadPlugins(_kernel);
         }
         
         private void LoadDependencies() {
-            _kernel.Load("ScientiaMagica.*.dll", "Plugins/*/*.Main.dll");
+            
+            var directory = new Uri(Path.GetDirectoryName(Assembly.GetExecutingAssembly().CodeBase) ?? throw new NotImplementedException())?.AbsolutePath;
+            var dllFiles = new string[] { }
+                .Concat(Directory.GetFiles(directory, @"ScientiaMagica.*.dll"))
+                .Concat(Directory.GetFiles(directory, @"*.Main.dll"))
+                .Select(s => new Uri(s).AbsolutePath);
+
+            _kernel.Load(dllFiles.Select(Assembly.LoadFile));
         }
 
         public void InitializeGame() {

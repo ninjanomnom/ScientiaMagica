@@ -3,8 +3,8 @@ using System.Linq;
 using ScientiaMagica.Common.Loader;
 
 namespace ScientiaMagica.PluginLoader {
-    internal class PluginOrderComparer : IComparer<PluginFactory> {
-        public int Compare(PluginFactory factoryA, PluginFactory factoryB) {
+    internal class PluginOrderComparer : IComparer<IPlugin> {
+        public int Compare(IPlugin factoryA, IPlugin factoryB) {
             var oneNull = false;
             var output = 0;
                 

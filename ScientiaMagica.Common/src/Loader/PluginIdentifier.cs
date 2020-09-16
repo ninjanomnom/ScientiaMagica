@@ -15,6 +15,12 @@ namespace ScientiaMagica.Common.Loader {
         /// </summary>
         public Version PluginVersion { get; }
 
+        /// <summary>
+        /// Makes a new <see cref="PluginIdentifier"/> for locating or labeling a plugin
+        /// </summary>
+        /// <param name="name"><inheritdoc cref="Name"/></param>
+        /// <param name="id"><inheritdoc cref="Id"/></param>
+        /// <param name="pluginVersion"><inheritdoc cref="PluginVersion"/></param>
         public PluginIdentifier(string name, string id, Version pluginVersion) {
             Name = name;
             Id = id;

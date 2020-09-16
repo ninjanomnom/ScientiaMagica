@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ScientiaMagica", "ScientiaM
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ScientiaMagica.PluginLoader", "ScientiaMagica.PluginLoader\ScientiaMagica.PluginLoader.csproj", "{88643EFB-9B3A-467D-9D4D-0A63621FDBC8}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ScientiaMagica.Options", "ScientiaMagica.Options\ScientiaMagica.Options.csproj", "{1DB9CF45-EA44-48F8-B3D7-687B36A617BA}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 	Debug|Any CPU = Debug|Any CPU
@@ -32,5 +34,11 @@ Global
 		{88643EFB-9B3A-467D-9D4D-0A63621FDBC8}.ExportDebug|Any CPU.Build.0 = Debug|Any CPU
 		{88643EFB-9B3A-467D-9D4D-0A63621FDBC8}.ExportRelease|Any CPU.ActiveCfg = Debug|Any CPU
 		{88643EFB-9B3A-467D-9D4D-0A63621FDBC8}.ExportRelease|Any CPU.Build.0 = Debug|Any CPU
+		{1DB9CF45-EA44-48F8-B3D7-687B36A617BA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1DB9CF45-EA44-48F8-B3D7-687B36A617BA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1DB9CF45-EA44-48F8-B3D7-687B36A617BA}.ExportDebug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1DB9CF45-EA44-48F8-B3D7-687B36A617BA}.ExportDebug|Any CPU.Build.0 = Debug|Any CPU
+		{1DB9CF45-EA44-48F8-B3D7-687B36A617BA}.ExportRelease|Any CPU.ActiveCfg = Debug|Any CPU
+		{1DB9CF45-EA44-48F8-B3D7-687B36A617BA}.ExportRelease|Any CPU.Build.0 = Debug|Any CPU
 	EndGlobalSection
 EndGlobal

@@ -5,11 +5,13 @@ using System.Linq;
 using System.Threading.Tasks;
 using Ninject;
 using ScientiaMagica.Common.Loader;
+using ScientiaMagica.Common.Loader.Attributes;
 using ScientiaMagica.Common.Loader.Exceptions;
 
 namespace ScientiaMagica.PluginLoader {
+    [DefaultInject(typeof(IPluginManager))]
     public class PluginManager : IPluginManager {
-        private bool _loaded = false;
+        private bool _loaded;
 
         private readonly Dictionary<PluginIdentifier, List<PluginIdentifier>> _trackedDependencies =
             new Dictionary<PluginIdentifier, List<PluginIdentifier>>();

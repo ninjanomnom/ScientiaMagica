@@ -8,10 +8,12 @@ using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using Godot;
 using Ninject;
+using Ninject.Parameters;
 using NLog;
 using ScientiaMagica.Common.Loader;
 using ScientiaMagica.Common.Loader.Controllers;
 using ScientiaMagica.Common.Loader.Exceptions;
+using ScientiaMagica.Menus;
 using Directory = System.IO.Directory;
 using File = Godot.File;
 using Path = System.IO.Path;
@@ -75,6 +77,11 @@ namespace ScientiaMagica.Setup {
             _logger.Info($"Initializing {worldInitializer}...");
             worldInitializer.ConcurrentInit();
             _logger.Info($"{worldInitializer} initialized in {(DateTime.Now - before).Seconds} seconds");
+        }
+
+        public void LoadMenu() {
+            var mainMenu = _kernel.Get<MainMenuLoader>().LoadScene();
+            ScientiaMagica.World.MainNode.AddChild(mainMenu);
         }
     }
 }

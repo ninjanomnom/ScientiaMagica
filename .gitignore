@@ -16,3 +16,7 @@ ScientiaMagica.PluginLoader/obj/
 ScientiaMagica.Options/bin/
 
 ScientiaMagica.Options/obj/
+
+ScientiaMagica/.mono/temp/
+
+ScientiaMagica.MainMenu/obj/

@@ -1,7 +1,12 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
+using System.Reflection;
 using JetBrains.Annotations;
 using Ninject.Modules;
 using Ninject.Parameters;
+using ScientiaMagica.Common.Loader.Attributes;
 
 namespace ScientiaMagica.Common.Loader {
     /// <summary>
@@ -19,7 +24,7 @@ namespace ScientiaMagica.Common.Loader {
 
         public virtual void LoadPlugin(IDictionary<PluginIdentifier, IPlugin> plugins) { }
     }
-    
+
     /// <summary>
     /// The core plugin object<br/>
     /// This handles everything from getting registered to dependency analysis<br/>
@@ -30,6 +35,22 @@ namespace ScientiaMagica.Common.Loader {
     public abstract class InjectedPlugin<T> : InjectedPlugin where T : InjectedPlugin {
         public sealed override void Load() {
             Bind<IPlugin>().ToConstant(this);
+
+            var ourAssembly = Assembly.GetAssembly(GetType());
+
+            foreach (var holder in ourAssembly.GetTypes()) {
+                var loaderAttributes = Attribute
+                    .GetCustomAttributes(holder)
+                    .OfType<IPluginLoadAttribute>();
+                foreach (var attribute in loaderAttributes) {
+                    attribute.LoadType(this, holder);
+                }
+            }
+        }
+
+        private IEnumerable<Type> GetTypesWithAttribute(Assembly ourAssembly, Type attribute) {
+            return ourAssembly.GetTypes()
+                .Where(t => Attribute.IsDefined(attribute, t));
         }
     }
 }

@@ -69,11 +69,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ScienciaMagica\src\Main.cs" />
-    <Compile Include="ScienciaMagica\src\Menus\MainMenu.cs" />
-    <Compile Include="ScienciaMagica\src\Setup\CoreDependencies.cs" />
-    <Compile Include="ScienciaMagica\src\Setup\Setup.cs" />
-    <Compile Include="ScienciaMagica\src\World.cs" />
+    <Compile Include="ScientiaMagica\src\Main.cs" />
+    <Compile Include="ScientiaMagica\src\Menus\MainMenu.cs" />
+    <Compile Include="ScientiaMagica\src\Menus\MainMenuLoader.cs" />
+    <Compile Include="ScientiaMagica\src\Setup\CoreDependencies.cs" />
+    <Compile Include="ScientiaMagica\src\Setup\Setup.cs" />
+    <Compile Include="ScientiaMagica\src\World.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="ScientiaMagica.Common\ScientiaMagica.Common.csproj">

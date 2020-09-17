@@ -16,7 +16,7 @@ _global_script_class_icons={
 [application]
 
 config/name="ScientiaMagica"
-run/main_scene="res://ScienciaMagica/src/Main.tscn"
+run/main_scene="res://ScientiaMagica/src/Main.tscn"
 config/icon="res://icon.png"
 
 [rendering]

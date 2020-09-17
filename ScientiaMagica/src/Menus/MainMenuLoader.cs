@@ -24,8 +24,8 @@ namespace ScientiaMagica.Menus {
             _menuButtons = menuButtons.OrderBy(b => b.Priority);
         }
 
-        public Node LoadScene() {
-            var menu = _nodeLoader.Get();
+        public Node Load() {
+            var menu = _nodeLoader.Load();
             var script = _scriptLoader.Get();
             if (script != null) {
                 menu.SetScript(script);

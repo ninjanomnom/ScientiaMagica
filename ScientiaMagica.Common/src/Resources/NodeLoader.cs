@@ -1,16 +1,17 @@
 ﻿using Godot;
+using ScientiaMagica.Common.GUI;
 
 namespace ScientiaMagica.Common.Resources {
-    public class NodeLoader {
-        private readonly Node _node;
+    public class NodeLoader : ISceneLoader {
+        private readonly PackedScene _node;
         
         public NodeLoader(string location) {
             var scene = Godot.ResourceLoader.Load<PackedScene>(location);
-            _node = scene.Instance();
+            _node = scene;
         }
 
-        public Node Get() {
-            return _node;
+        public Node Load() {
+            return _node.Instance();
         }
     }
 }

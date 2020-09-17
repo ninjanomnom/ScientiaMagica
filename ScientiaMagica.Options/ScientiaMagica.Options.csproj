@@ -43,7 +43,9 @@
     <ItemGroup>
         <Compile Include="Properties\AssemblyInfo.cs" />
         <Compile Include="src\Main.cs" />
-        <Compile Include="src\OptionButton.cs" />
+        <Compile Include="src\OptionButtonLoader.cs" />
+        <Compile Include="src\OptionMenu.cs" />
+        <Compile Include="src\Scenes\OptionButton.cs" />
     </ItemGroup>
     <ItemGroup>
       <ProjectReference Include="..\ScientiaMagica.Common\ScientiaMagica.Common.csproj">
@@ -58,6 +60,9 @@
       <PackageReference Include="Ninject">
         <Version>3.3.4</Version>
       </PackageReference>
+    </ItemGroup>
+    <ItemGroup>
+      <Content Include="src\Scenes\OptionButton.tscn" />
     </ItemGroup>
     <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
     <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

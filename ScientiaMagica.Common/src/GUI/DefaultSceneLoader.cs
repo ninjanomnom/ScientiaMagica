@@ -2,17 +2,19 @@
 
 namespace ScientiaMagica.Common.GUI {
     public class DefaultSceneLoader : ISceneLoader {
-        private readonly Node _scene;
-        
-        public DefaultSceneLoader(string nodeLocation, string scriptLocation = null) {
-            _scene = ResourceLoader.Load<PackedScene>(nodeLocation).Instance();
-            if (scriptLocation != null) {
-                _scene.SetScript(ResourceLoader.Load<Script>(scriptLocation));
-            }
+        private readonly PackedScene _scene;
+
+        public DefaultSceneLoader(string nodeLocation) {
+            _scene = ResourceLoader.Load<PackedScene>(nodeLocation);
         }
         
-        public Node LoadScene() {
-            return _scene;
+        public DefaultSceneLoader(string nodeLocation, string scriptLocation) {
+            _scene = ResourceLoader.Load<PackedScene>(nodeLocation);
+            _scene.SetScript(ResourceLoader.Load<Script>(scriptLocation));
+        }
+        
+        public Node Load() {
+            return _scene.Instance();
         }
     }
 }

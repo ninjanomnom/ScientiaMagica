@@ -18,7 +18,7 @@ namespace ScientiaMagica.Common.GUI {
         protected abstract ISceneLoader Loader { get; }
         
         public Button GetButton() {
-            var button = Loader.LoadScene();
+            var button = Loader.Load();
             if (!button.Is<Button>()) {
                 // TODO: Not a button exception
                 throw new NotImplementedException("Not a button");

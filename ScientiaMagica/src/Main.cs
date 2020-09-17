@@ -3,10 +3,9 @@ using Godot;
 using JetBrains.Annotations;
 using NLog;
 using ScientiaMagica;
-using ScientiaMagica.Common.GUI;
 
 [UsedImplicitly]
-public class Main : MainImplementation { };
+public class Main : MainImplementation { }
 
 namespace ScientiaMagica {
     public class MainImplementation : Node2D {

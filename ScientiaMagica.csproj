@@ -69,6 +69,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ScientiaMagica.Options\src\Scenes\OptionButton.cs" />
     <Compile Include="ScientiaMagica\src\Main.cs" />
     <Compile Include="ScientiaMagica\src\Menus\MainMenu.cs" />
     <Compile Include="ScientiaMagica\src\Menus\MainMenuLoader.cs" />

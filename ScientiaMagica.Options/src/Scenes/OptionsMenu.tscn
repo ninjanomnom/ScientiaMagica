@@ -1,0 +1,26 @@
+[gd_scene format=2]
+
+[node name="OptionsMenu" type="CanvasLayer"]
+
+[node name="OptionsMenu" type="Panel" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -341.0
+margin_top = -229.0
+margin_right = 341.0
+margin_bottom = 229.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Categories" type="TabContainer" parent="OptionsMenu"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 5.0
+margin_right = -5.0
+margin_bottom = -5.0
+__meta__ = {
+"_edit_use_anchors_": false
+}

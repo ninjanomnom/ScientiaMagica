@@ -1,0 +1,27 @@
+[gd_scene format=2]
+
+[node name="OptionEntry" type="GridContainer"]
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+margin_top = -10.0
+margin_bottom = 13.0
+rect_min_size = Vector2( 0, 23 )
+columns = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="OptionName" type="Label" parent="."]
+margin_top = 3.0
+margin_right = 510.0
+margin_bottom = 17.0
+size_flags_horizontal = 3
+text = "This is an option"
+
+[node name="OptionValue" type="OptionButton" parent="."]
+margin_left = 514.0
+margin_right = 1024.0
+margin_bottom = 20.0
+size_flags_horizontal = 3
+text = "Select an option..."

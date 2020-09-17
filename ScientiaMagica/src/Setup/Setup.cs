@@ -80,7 +80,7 @@ namespace ScientiaMagica.Setup {
         }
 
         public void LoadMenu() {
-            var mainMenu = _kernel.Get<MainMenuLoader>().LoadScene();
+            var mainMenu = _kernel.Get<MainMenuLoader>().Load();
             ScientiaMagica.World.MainNode.AddChild(mainMenu);
         }
     }

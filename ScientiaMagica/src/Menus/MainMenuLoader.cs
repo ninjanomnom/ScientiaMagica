@@ -12,12 +12,12 @@ namespace ScientiaMagica.Menus {
     public class MainMenuLoader : ISceneLoader {
         private readonly NodeLoader _nodeLoader;
         private readonly ScriptLoader _scriptLoader;
-        private readonly IEnumerable<MainMenuButton> _menuButtons;
+        private readonly IEnumerable<IMainMenuButton> _menuButtons;
 
         public MainMenuLoader(
             [Named("MainMenu")] NodeLoader nodeLoader,
             [Named("MainMenu")] ScriptLoader scriptLoader,
-            IEnumerable<MainMenuButton> menuButtons
+            IEnumerable<IMainMenuButton> menuButtons
         ) {
             _nodeLoader = nodeLoader;
             _scriptLoader = scriptLoader;

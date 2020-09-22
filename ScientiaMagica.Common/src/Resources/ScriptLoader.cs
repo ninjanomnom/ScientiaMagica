@@ -1,10 +1,11 @@
 ﻿using Godot;
+using JetBrains.Annotations;
 
 namespace ScientiaMagica.Common.Resources {
     public class ScriptLoader {
         private readonly Script _script = null;
         
-        public ScriptLoader(string location) {
+        public ScriptLoader([PathReference] string location) {
             if (location != null) {
                 _script = ResourceLoader.Load<Script>(location);
             }

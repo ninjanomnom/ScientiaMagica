@@ -8,6 +8,7 @@ using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using Godot;
 using Ninject;
+using Ninject.Extensions.Factory;
 using Ninject.Parameters;
 using NLog;
 using ScientiaMagica.Common.Loader;
@@ -17,6 +18,7 @@ using ScientiaMagica.Menus;
 using Directory = System.IO.Directory;
 using File = Godot.File;
 using Path = System.IO.Path;
+using World = ScientiaMagica.Common.World;
 
 namespace ScientiaMagica.Setup {
     public class Setup {
@@ -78,10 +80,11 @@ namespace ScientiaMagica.Setup {
             worldInitializer.ConcurrentInit();
             _logger.Info($"{worldInitializer} initialized in {(DateTime.Now - before).Seconds} seconds");
         }
-
+        
         public void LoadMenu() {
-            var mainMenu = _kernel.Get<MainMenuLoader>().Load();
-            ScientiaMagica.World.MainNode.AddChild(mainMenu);
+            var mainMenuLoader = _kernel.Get<MainMenuLoader>();
+            var mainMenu = mainMenuLoader.Load();
+            World.SwitchScene(mainMenu);
         }
     }
 }

@@ -2,6 +2,9 @@
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
     <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
     <PropertyGroup>
+        <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
+    </PropertyGroup>
+    <PropertyGroup>
         <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
         <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
         <ProjectGuid>{1DB9CF45-EA44-48F8-B3D7-687B36A617BA}</ProjectGuid>
@@ -44,8 +47,9 @@
         <Compile Include="Properties\AssemblyInfo.cs" />
         <Compile Include="src\Main.cs" />
         <Compile Include="src\OptionButtonLoader.cs" />
+        <Compile Include="src\OptionEntry.cs" />
         <Compile Include="src\OptionMenu.cs" />
-        <Compile Include="src\Scenes\OptionButton.cs" />
+        <Compile Include="src\Scenes\OptionsButton.cs" />
     </ItemGroup>
     <ItemGroup>
       <ProjectReference Include="..\ScientiaMagica.Common\ScientiaMagica.Common.csproj">
@@ -60,9 +64,14 @@
       <PackageReference Include="Ninject">
         <Version>3.3.4</Version>
       </PackageReference>
+      <PackageReference Include="Ninject.Extensions.Factory">
+        <Version>3.3.3</Version>
+      </PackageReference>
     </ItemGroup>
     <ItemGroup>
-      <Content Include="src\Scenes\OptionButton.tscn" />
+      <Content Include="src\Scenes\OptionsButton.tscn" />
+      <Content Include="src\Scenes\OptionsCategory.tscn" />
+      <Content Include="src\Scenes\OptionsMenu.tscn" />
     </ItemGroup>
     <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
     <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

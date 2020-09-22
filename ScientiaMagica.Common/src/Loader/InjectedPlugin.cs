@@ -31,7 +31,6 @@ namespace ScientiaMagica.Common.Loader {
     /// </summary>
     /// <typeparam name="T">When inheriting from this, the generic argument should be the type that is implementing <see cref="InjectedPlugin{T}"/>
     /// For example: <code>public class MyPlugin : DefaultPlugin&#60;MyPlugin&#62; {...}</code></typeparam>
-    [PublicAPI]
     public abstract class InjectedPlugin<T> : InjectedPlugin where T : InjectedPlugin {
         public sealed override void Load() {
             Bind<IPlugin>().ToConstant(this);

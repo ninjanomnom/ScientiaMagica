@@ -1,10 +1,4 @@
-[gd_scene load_steps=2 format=2]
-
-[ext_resource path="res://ScientiaMagica.Options/src/Scenes/OptionButton.cs" type="Script" id=1]
-
-
-
-
+[gd_scene format=2]
 
 [node name="Button" type="Button"]
 anchor_left = 0.5
@@ -16,7 +10,6 @@ margin_top = -10.0
 margin_right = 31.5
 margin_bottom = 10.0
 text = "Options"
-script = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }

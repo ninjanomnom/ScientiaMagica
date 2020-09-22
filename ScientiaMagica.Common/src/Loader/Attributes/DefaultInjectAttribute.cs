@@ -1,5 +1,8 @@
 ﻿using System;
+using System.Reflection;
 using JetBrains.Annotations;
+using Ninject;
+using Ninject.Activation;
 using Ninject.Modules;
 
 namespace ScientiaMagica.Common.Loader.Attributes {
@@ -20,6 +23,13 @@ namespace ScientiaMagica.Common.Loader.Attributes {
             }
 
             module.Bind(_bindingTarget).To(holder);
+            
+            var lazyType = typeof(Lazy<>).MakeGenericType(_bindingTarget);
+            module.Bind(lazyType).ToMethod(GetLazyFunc);
+        }
+
+        private Func<object> GetLazyFunc(IContext context) {
+            return () => context.Kernel.Get(_bindingTarget);
         }
     }
 }

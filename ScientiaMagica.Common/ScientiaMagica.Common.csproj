@@ -2,6 +2,9 @@
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
     <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
     <PropertyGroup>
+        <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
+    </PropertyGroup>
+    <PropertyGroup>
         <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
         <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
         <ProjectGuid>{0D3ABA3F-CFFA-484F-A90C-5ED5290CAED8}</ProjectGuid>
@@ -20,7 +23,7 @@
         <DebugSymbols>true</DebugSymbols>
         <DebugType>full</DebugType>
         <Optimize>false</Optimize>
-        <OutputPath>bin\Debug\</OutputPath>
+        <OutputPath>..\.mono\temp\bin\Debug\</OutputPath>
         <DefineConstants>DEBUG;TRACE</DefineConstants>
         <ErrorReport>prompt</ErrorReport>
         <WarningLevel>4</WarningLevel>
@@ -29,7 +32,7 @@
         <PlatformTarget>AnyCPU</PlatformTarget>
         <DebugType>pdbonly</DebugType>
         <Optimize>true</Optimize>
-        <OutputPath>bin\Release\</OutputPath>
+        <OutputPath>..\.mono\temp\bin\Release\</OutputPath>
         <DefineConstants>TRACE</DefineConstants>
         <ErrorReport>prompt</ErrorReport>
         <WarningLevel>4</WarningLevel>
@@ -42,10 +45,14 @@
     </ItemGroup>
     <ItemGroup>
         <Compile Include="Properties\AssemblyInfo.cs" />
+        <Compile Include="src\GodotExtensions\GodotNodeExtensions.cs" />
         <Compile Include="src\GodotExtensions\GodotObjectExtensions.cs" />
+        <Compile Include="src\GodotExtensions\PackedSceneExtensions.cs" />
         <Compile Include="src\GUI\DefaultSceneLoader.cs" />
+        <Compile Include="src\GUI\IMainMenuButton.cs" />
         <Compile Include="src\Loader\Attributes\DefaultInjectAttribute.cs" />
         <Compile Include="src\Loader\Attributes\IPluginLoadAttribute.cs" />
+        <Compile Include="src\Loader\Attributes\NamedInjectAttribute.cs" />
         <Compile Include="src\Loader\Controllers\IConcurrentWorldInitializer.cs" />
         <Compile Include="src\Loader\Controllers\IConcurrentWorldTicker.cs" />
         <Compile Include="src\Loader\Controllers\InitFlags.cs" />
@@ -67,6 +74,7 @@
         <Compile Include="src\Resources\NodeLoader.cs" />
         <Compile Include="src\Resources\ScriptLoader.cs" />
         <Compile Include="src\Signals\ButtonSignals.cs" />
+        <Compile Include="src\World.cs" />
     </ItemGroup>
     <ItemGroup>
         <Reference Include="GodotSharp">
@@ -82,6 +90,9 @@
         </PackageReference>
         <PackageReference Include="Ninject">
             <Version>3.3.4</Version>
+        </PackageReference>
+        <PackageReference Include="Ninject.Extensions.Factory">
+          <Version>3.3.3</Version>
         </PackageReference>
         <PackageReference Include="NLog">
             <Version>4.7.4</Version>

@@ -1,17 +1,24 @@
-﻿using Godot;
-using Ninject;
+﻿using System.Collections;
+using Godot;
+using ScientiaMagica.Common.GodotExtensions;
 using ScientiaMagica.Common.GUI;
 using ScientiaMagica.Common.Loader.Attributes;
-using ScientiaMagica.Common.Resources;
+using ScientiaMagica.Options.Scenes;
 
 namespace ScientiaMagica.Options {
-    [DefaultInject(typeof(MainMenuButton))]
-    public class OptionButtonLoader : MainMenuButton {
-        public override PriorityOrder Priority { get; } = PriorityOrder.OverExit;
-        protected override ISceneLoader Loader { get; } = new DefaultSceneLoader(@"res://ScientiaMagica.Options/src/Scenes/OptionButton.tscn");
+    [DefaultInject(typeof(IMainMenuButton))]
+    public class OptionButtonLoader : IMainMenuButton {
+        public MainMenuPriorityOrder Priority { get; } = MainMenuPriorityOrder.OverExit;
 
-        public OptionButtonLoader() {
-            Loader = new NodeLoader("res://ScientiaMagica.Options/src/Scenes/OptionButton.tscn");
+        private readonly Button _button;
+
+        public OptionButtonLoader(OptionsButton button) {
+            button.SetPropertiesFromScene(@"res://ScientiaMagica.Options/src/Scenes/OptionsButton.tscn");
+            _button = button;
+        }
+        
+        public Button GetButton() {
+            return _button;
         }
     }
 }

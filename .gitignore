@@ -20,3 +20,5 @@ ScientiaMagica.Options/obj/
 ScientiaMagica/.mono/temp/
 
 ScientiaMagica.MainMenu/obj/
+
+.mono/metadata/

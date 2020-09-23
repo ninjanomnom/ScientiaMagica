@@ -22,3 +22,13 @@ ScientiaMagica/.mono/temp/
 ScientiaMagica.MainMenu/obj/
 
 .mono/metadata/
+
+.vs/
+
+packages/
+
+ScientiaMagica.PluginLoader.Tests/bin/
+
+ScientiaMagica.PluginLoader.Tests/obj/
+
+ScientiaMagica.sln.DotSettings.user

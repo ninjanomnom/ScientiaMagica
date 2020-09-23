@@ -55,14 +55,14 @@ namespace ScientiaMagica.PluginLoader {
             }
         }
 
-        public void LoadPlugins(IKernel kernel) {
+        public void LoadPlugins() {
             if (_missingDependencies.Any()) {
                 throw new AggregateException(_missingDependencies.Select(p =>
                     new MissingPluginException($"One or more plugins require {p} to be installed")));
 
             }
 
-            InitializePlugins(kernel);
+            InitializePlugins();
             _loaded = true;
             var initializedPlugins = _sortedPlugins.ToDictionary(p => p.Info, p => p);
             foreach (var plugin in _sortedPlugins) {
@@ -70,7 +70,7 @@ namespace ScientiaMagica.PluginLoader {
             }
         }
 
-        private void InitializePlugins(IKernel kernel) {
+        private void InitializePlugins() {
             void InitializePlugin(IPlugin plugin) {
                 try {
                     plugin.Initialize();

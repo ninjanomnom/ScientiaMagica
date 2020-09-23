@@ -40,7 +40,7 @@ namespace ScientiaMagica.Setup {
             foreach (var plugin in _kernel.GetAll<IPlugin>()) {
                 pluginManager.AddPlugin(plugin);
             }
-            pluginManager.LoadPlugins(_kernel);
+            pluginManager.LoadPlugins();
         }
         
         private void LoadDependencies() {

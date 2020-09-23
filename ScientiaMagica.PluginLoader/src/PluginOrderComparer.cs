@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using System.Linq;
 using ScientiaMagica.Common.Loader;
 
@@ -38,7 +38,7 @@ namespace ScientiaMagica.PluginLoader {
                 return -1;
             }
 
-            return 0;
+            return -1;
         }
     }
 }

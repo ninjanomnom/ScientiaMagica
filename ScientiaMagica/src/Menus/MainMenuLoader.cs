@@ -4,6 +4,7 @@ using System.Linq;
 using Godot;
 using JetBrains.Annotations;
 using Ninject;
+using NLog;
 using ScientiaMagica.Common.GUI;
 using ScientiaMagica.Common.Resources;
 
@@ -33,7 +34,9 @@ namespace ScientiaMagica.Menus {
 
             foreach (var button in _menuButtons.Select(b => b.GetButton())) {
                 if (!menu.HasSignal("MenuButtonRegistration")) {
-                    throw new NotImplementedException();
+                    LogManager.GetCurrentClassLogger().Warn(
+                        $"Button '{button.Name} | {button.Text}' has not implemented a menu button registration signal"
+                    );
                 }
                 
                 menu.EmitSignal("MenuButtonRegistration", button);

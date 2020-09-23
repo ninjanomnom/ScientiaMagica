@@ -28,8 +28,7 @@ namespace ScientiaMagica.PluginLoader {
         
         public void AddPlugin(IPlugin plugin) {
             if (_loaded) {
-                // TODO: Exception for already having loaded plugins
-                throw new NotImplementedException();
+                throw new AlreadyInitializedException("The plugin manager is already initialized, plugins can no longer be added");
             }
 
             if ((plugin.Dependencies?.Any()).GetValueOrDefault(false)) {
@@ -58,8 +57,9 @@ namespace ScientiaMagica.PluginLoader {
 
         public void LoadPlugins(IKernel kernel) {
             if (_missingDependencies.Any()) {
-                // TODO: Missing dependencies exception
-                throw new NotImplementedException();
+                throw new AggregateException(_missingDependencies.Select(p =>
+                    new MissingPluginException($"One or more plugins require {p} to be installed")));
+
             }
 
             InitializePlugins(kernel);

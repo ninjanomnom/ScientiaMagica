@@ -4,6 +4,7 @@ using JetBrains.Annotations;
 using Ninject;
 using Ninject.Activation;
 using Ninject.Modules;
+using ScientiaMagica.Common.Loader.Exceptions;
 
 namespace ScientiaMagica.Common.Loader.Attributes {
     [AttributeUsage(AttributeTargets.Class, AllowMultiple = true)]
@@ -18,8 +19,7 @@ namespace ScientiaMagica.Common.Loader.Attributes {
         
         public void LoadType(NinjectModule module, Type holder) {
             if (!_bindingTarget.IsAssignableFrom(holder)) {
-                // TODO: Throw applied to wrong type
-                throw new NotImplementedException();
+                throw new InvalidInjectionTypeException($"{holder} can not be bound to {_bindingTarget}");
             }
 
             module.Bind(_bindingTarget).To(holder);

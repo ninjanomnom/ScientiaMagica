@@ -44,8 +44,12 @@ namespace ScientiaMagica.Setup {
         }
         
         private void LoadDependencies() {
+
+            var directory = new Uri(
+                Path.GetDirectoryName(Assembly.GetExecutingAssembly().CodeBase)
+                ?? throw new InvalidOperationException("Assembly somehow not in a directory")
+            )?.AbsolutePath;
             
-            var directory = new Uri(Path.GetDirectoryName(Assembly.GetExecutingAssembly().CodeBase) ?? throw new NotImplementedException())?.AbsolutePath;
             var dllFiles = new string[] { }
                 .Concat(Directory.GetFiles(directory, @"ScientiaMagica.*.dll"))
                 .Concat(Directory.GetFiles(directory, @"*.Main.dll"))

@@ -59,6 +59,8 @@
         <Compile Include="src\Loader\Controllers\IWorldInitializer.cs" />
         <Compile Include="src\Loader\Controllers\IWorldTicker.cs" />
         <Compile Include="src\Loader\Controllers\TickFlags.cs" />
+        <Compile Include="src\Loader\Exceptions\AlreadyInitializedException.cs" />
+        <Compile Include="src\Loader\Exceptions\InvalidInjectionTypeException.cs" />
         <Compile Include="src\Loader\InjectedPlugin.cs" />
         <Compile Include="src\Loader\Exceptions\CircularReferencePluginException.cs" />
         <Compile Include="src\Loader\Exceptions\PluginException.cs" />

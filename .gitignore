@@ -1,34 +1,13 @@
 
 .idea/
 
-.mono/temp/
-
-ScienciaMagica/.mono/temp/
-
-ScientiaMagica.Common/bin/
-
-ScientiaMagica.Common/obj/
-
-ScientiaMagica.PluginLoader/bin/
-
-ScientiaMagica.PluginLoader/obj/
-
-ScientiaMagica.Options/bin/
-
-ScientiaMagica.Options/obj/
-
-ScientiaMagica/.mono/temp/
-
-ScientiaMagica.MainMenu/obj/
-
 .mono/metadata/
 
 .vs/
 
 packages/
 
-ScientiaMagica.PluginLoader.Tests/bin/
-
-ScientiaMagica.PluginLoader.Tests/obj/
-
-ScientiaMagica.sln.DotSettings.user
+*.user
+**/bin/
+**/obj/
+**/temp/

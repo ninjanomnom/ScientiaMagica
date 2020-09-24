@@ -1,21 +1,17 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
-using Ninject;
 using ScientiaMagica.Common.Loader;
 using ScientiaMagica.Common.Loader.Exceptions;
+using Xunit;
 
-namespace ScientiaMagica.PluginLoader.Tests {
-    [TestClass]
+namespace ScientiaMagica.PluginLoader.Test {
     public class PluginManagerTests {
-        private IPluginManager _pluginManager;
+        private readonly IPluginManager _pluginManager;
 
         private int _basicPluginTracker = 1;
         
-        [TestInitialize]
-        public void Setup() {
+        public PluginManagerTests() {
             _pluginManager = new PluginManager();
         }
 
@@ -42,7 +38,7 @@ namespace ScientiaMagica.PluginLoader.Tests {
             }
         }
 
-        [TestMethod]
+        [Fact]
         public void PluginsGetInitialized() {
             var mockedPlugin = SetupBasicPlugin();
             _pluginManager.AddPlugin(mockedPlugin.Object);
@@ -53,7 +49,7 @@ namespace ScientiaMagica.PluginLoader.Tests {
             mockedPlugin.Verify(p => p.LoadPlugin(It.IsAny<IDictionary<PluginIdentifier, IPlugin>>()), Times.Once);
         }
         
-        [TestMethod]
+        [Fact]
         public void PluginsLoadInCorrectOrder() {
             var firstPlugin = SetupBasicPlugin();
             var secondPlugin = SetupBasicPlugin();
@@ -65,28 +61,25 @@ namespace ScientiaMagica.PluginLoader.Tests {
             var loaded = new List<IPlugin>();
             firstPlugin.Setup(p => p.LoadPlugin(It.IsAny<IDictionary<PluginIdentifier, IPlugin>>()))
                 .Callback<IDictionary<PluginIdentifier, IPlugin>>(dict => {
-                    if (loaded.Any()) {
-                        Assert.Fail("Some other plugin was loaded before firstPlugin");
-                    }
-
+                    Assert.Empty(loaded);
+                    
                     loaded.Add(firstPlugin.Object);
                 });
 
             secondPlugin.Setup(p => p.LoadPlugin(It.IsAny<IDictionary<PluginIdentifier, IPlugin>>()))
                 .Callback<IDictionary<PluginIdentifier, IPlugin>>(dict => {
-                    if (!loaded.Contains(firstPlugin.Object)) {
-                        Assert.Fail("Second plugin is being loaded before first plugin");
-                    }
-
+                    Assert.Single(loaded);
+                    Assert.Contains(firstPlugin.Object, loaded);
+                    
                     loaded.Add(secondPlugin.Object);
                 });
 
             thirdPlugin.Setup(p => p.LoadPlugin(It.IsAny<IDictionary<PluginIdentifier, IPlugin>>()))
                 .Callback<IDictionary<PluginIdentifier, IPlugin>>(dict => {
-                    if (!loaded.Contains(secondPlugin.Object)) {
-                        Assert.Fail("Third plugin is being loaded before second plugin");
-                    }
-
+                    Assert.Equal(2, loaded.Count);
+                    Assert.Contains(firstPlugin.Object, loaded);
+                    Assert.Contains(secondPlugin.Object, loaded);
+                    
                     loaded.Add(secondPlugin.Object);
                 });
 
@@ -98,18 +91,18 @@ namespace ScientiaMagica.PluginLoader.Tests {
             _pluginManager.LoadPlugins();
         }
 
-        [TestMethod]
+        [Fact]
         public void AddingFailsAfterLoad() {
             var mockedPlugin = SetupBasicPlugin();
             _pluginManager.AddPlugin(mockedPlugin.Object);
             
             _pluginManager.LoadPlugins();
 
-            Assert.ThrowsException<AlreadyInitializedException>(() =>
+            Assert.Throws<AlreadyInitializedException>(() =>
                 _pluginManager.AddPlugin(SetupBasicPlugin().Object));
         }
 
-        [TestMethod]
+        [Fact]
         public void PluginsRequireDependencies() {
             var unloadedInfo = new PluginIdentifier("Unloaded", "Unloaded.Test", new Version(1, 0, 0));
             
@@ -118,7 +111,7 @@ namespace ScientiaMagica.PluginLoader.Tests {
             
             _pluginManager.AddPlugin(mockedPlugin.Object);
 
-            Assert.ThrowsException<MissingPluginException>(() => CallAndUnwrapFirst(() => _pluginManager.LoadPlugins()));
+            Assert.Throws<MissingPluginException>(() => CallAndUnwrapFirst(() => _pluginManager.LoadPlugins()));
         }
     }
 }

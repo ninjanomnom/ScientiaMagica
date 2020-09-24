@@ -15,7 +15,9 @@ namespace ScientiaMagica.Common.GodotExtensions {
 
             private static readonly List<string> IgnoredProperties = new List<string>() {
                 "__meta__",
-                "script"
+                "script",
+                "rect_global_position",
+                "custom_viewport"
             };
             
             internal ObjectCopyIntermediate(T node) {

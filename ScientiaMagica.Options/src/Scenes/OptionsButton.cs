@@ -19,7 +19,7 @@ namespace ScientiaMagica.Options.Scenes {
         }
 
         private void ButtonPressed() {
-            World.SwitchScene(_menu);
+            World.MainNode.AddChild(_menu);
         }
     }
 }

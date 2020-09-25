@@ -1,8 +1,10 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Godot;
 using ScientiaMagica.Common.GodotExtensions;
 using ScientiaMagica.Common.Loader.Attributes;
 using ScientiaMagica.Common.Resources;
+using ScientiaMagica.Common.Signals;
 
 namespace ScientiaMagica.Options {
     [DefaultInject(typeof(OptionMenu))]
@@ -22,6 +24,12 @@ namespace ScientiaMagica.Options {
                 var container = category.GetNode<VBoxContainer>("EntriesScroller/Entries");
                 container.AddChild(entry.GetOptionEntry());
             }
+
+            var controls = GetNode<GridContainer>("OptionsMenu/ControlButtons");
+            controls.GetNode<Button>("CancelButton").Connect(ButtonSignals.Pressed, this, nameof(CancelButtonPressed));
+            controls.GetNode<Button>("ResetButton").Connect(ButtonSignals.Pressed, this, nameof(ResetButtonPressed));
+            controls.GetNode<Button>("FinishButton").Connect(ButtonSignals.Pressed, this, nameof(FinishButtonPressed));
+            controls.GetNode<Button>("ApplyButton").Connect(ButtonSignals.Pressed, this, nameof(ApplyButtonPressed));
         }
 
         private Panel GetCategory(string name) {
@@ -36,6 +44,22 @@ namespace ScientiaMagica.Options {
             _tabs.AddChild(panel);
 
             return panel;
+        }
+
+        private void CancelButtonPressed() {
+            GetParent().RemoveChild(this);
+        }
+
+        private void ResetButtonPressed() {
+            throw new NotImplementedException();
+        }
+        
+        private void FinishButtonPressed() {
+            throw new NotImplementedException();
+        }
+
+        private void ApplyButtonPressed() {
+            throw new NotImplementedException();
         }
     }
 }

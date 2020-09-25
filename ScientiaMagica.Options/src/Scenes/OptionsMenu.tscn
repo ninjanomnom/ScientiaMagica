@@ -23,7 +23,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="GridContainer" type="GridContainer" parent="OptionsMenu"]
+[node name="ControlButtons" type="GridContainer" parent="OptionsMenu"]
 anchor_top = 0.9
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -36,7 +36,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="CancelButton" type="Button" parent="OptionsMenu/GridContainer"]
+[node name="CancelButton" type="Button" parent="OptionsMenu/ControlButtons"]
 margin_right = 199.0
 margin_bottom = 38.0
 size_flags_horizontal = 3
@@ -44,7 +44,7 @@ size_flags_vertical = 3
 text = "Cancel"
 clip_text = true
 
-[node name="ResetButton" type="Button" parent="OptionsMenu/GridContainer"]
+[node name="ResetButton" type="Button" parent="OptionsMenu/ControlButtons"]
 margin_left = 203.0
 margin_right = 402.0
 margin_bottom = 38.0
@@ -54,7 +54,7 @@ disabled = true
 text = "Reset"
 clip_text = true
 
-[node name="FinishButton" type="Button" parent="OptionsMenu/GridContainer"]
+[node name="FinishButton" type="Button" parent="OptionsMenu/ControlButtons"]
 margin_left = 406.0
 margin_right = 605.0
 margin_bottom = 38.0
@@ -64,7 +64,7 @@ disabled = true
 text = "Finish"
 clip_text = true
 
-[node name="ApplyButton" type="Button" parent="OptionsMenu/GridContainer"]
+[node name="ApplyButton" type="Button" parent="OptionsMenu/ControlButtons"]
 margin_left = 609.0
 margin_right = 808.0
 margin_bottom = 38.0

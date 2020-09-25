@@ -3,24 +3,73 @@
 [node name="OptionsMenu" type="CanvasLayer"]
 
 [node name="OptionsMenu" type="Panel" parent="."]
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-margin_left = -341.0
-margin_top = -229.0
-margin_right = 341.0
-margin_bottom = 229.0
+anchor_left = 0.1
+anchor_top = 0.1
+anchor_right = 0.9
+anchor_bottom = 0.9
 __meta__ = {
+"_edit_group_": true,
 "_edit_use_anchors_": false
 }
 
 [node name="Categories" type="TabContainer" parent="OptionsMenu"]
 anchor_right = 1.0
-anchor_bottom = 1.0
+anchor_bottom = 0.9
 margin_left = 5.0
+margin_top = 5.0
 margin_right = -5.0
 margin_bottom = -5.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="GridContainer" type="GridContainer" parent="OptionsMenu"]
+anchor_top = 0.9
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 5.0
+margin_top = 5.0
+margin_right = -5.0
+margin_bottom = -5.0
+columns = 4
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CancelButton" type="Button" parent="OptionsMenu/GridContainer"]
+margin_right = 199.0
+margin_bottom = 38.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "Cancel"
+clip_text = true
+
+[node name="ResetButton" type="Button" parent="OptionsMenu/GridContainer"]
+margin_left = 203.0
+margin_right = 402.0
+margin_bottom = 38.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+disabled = true
+text = "Reset"
+clip_text = true
+
+[node name="FinishButton" type="Button" parent="OptionsMenu/GridContainer"]
+margin_left = 406.0
+margin_right = 605.0
+margin_bottom = 38.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+disabled = true
+text = "Finish"
+clip_text = true
+
+[node name="ApplyButton" type="Button" parent="OptionsMenu/GridContainer"]
+margin_left = 609.0
+margin_right = 808.0
+margin_bottom = 38.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+disabled = true
+text = "Apply"
+clip_text = true

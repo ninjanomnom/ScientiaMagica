@@ -41,34 +41,3 @@ valign = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
-
-[node name="NewButton" type="Button" parent="MainPanel/MainContainer"]
-margin_top = 18.0
-margin_right = 180.0
-margin_bottom = 38.0
-theme = ExtResource( 2 )
-text = "New"
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="LoadButton" type="Button" parent="MainPanel/MainContainer"]
-margin_top = 42.0
-margin_right = 180.0
-margin_bottom = 62.0
-theme = ExtResource( 2 )
-disabled = true
-text = "Load"
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="ExitButton" type="Button" parent="MainPanel/MainContainer"]
-margin_top = 66.0
-margin_right = 180.0
-margin_bottom = 86.0
-theme = ExtResource( 2 )
-text = "Exit"
-__meta__ = {
-"_edit_use_anchors_": false
-}

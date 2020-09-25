@@ -1,7 +1,9 @@
 ﻿using Godot;
 using Ninject.Modules;
 using NLog;
+using ScientiaMagica.Common.GUI;
 using ScientiaMagica.Common.Resources;
+using ScientiaMagica.Menus;
 
 namespace ScientiaMagica.Setup {
     public class CoreDependencies : NinjectModule {
@@ -20,7 +22,8 @@ namespace ScientiaMagica.Setup {
             Bind<ScriptLoader>()
                 .ToConstant(mainMenuScriptLoader)
                 .Named("MainMenu");
-                
+
+            Bind<IMainMenuButton>().To<ExitButtonLoader>();
         }
     }
 }

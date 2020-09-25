@@ -8,7 +8,7 @@ using ScientiaMagica.Options.Scenes;
 namespace ScientiaMagica.Options {
     [DefaultInject(typeof(IMainMenuButton))]
     public class OptionButtonLoader : IMainMenuButton {
-        public MainMenuPriorityOrder Priority { get; } = MainMenuPriorityOrder.OverExit;
+        public MainMenuPriorityOrder Priority { get; } = MainMenuPriorityOrder.Middle;
 
         private readonly Button _button;
 

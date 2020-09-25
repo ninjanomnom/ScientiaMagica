@@ -1,0 +1,12 @@
+﻿{
+  "author": "Emmett Gaines",
+  "classifications": [ "Framework", "Godot" ],
+  "name": "Basic Godot Library",
+  "identity": "basic.godot.template",
+  "shortName": "GodotLib",
+  "tags": {
+    "language": "C#"
+  },
+  "sourceName": "GodotLibrary",
+  "preferNameDirectory" : "true"
+}

@@ -11,3 +11,5 @@ packages/
 **/bin/
 **/obj/
 **/temp/
+
+ScientiaMagica.Debug.Log

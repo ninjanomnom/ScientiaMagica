@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using Ninject;
+﻿using System.Collections.Generic;
 
 namespace ScientiaMagica.Common.Loader {
     public interface IPluginManager {

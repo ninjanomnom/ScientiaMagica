@@ -1,29 +1,9 @@
-﻿using Godot;
-using Ninject.Modules;
-using NLog;
-using ScientiaMagica.Common.GUI;
-using ScientiaMagica.Common.Resources;
-using ScientiaMagica.Menus;
+﻿using System;
+using ScientiaMagica.Common.Loader;
 
 namespace ScientiaMagica.Setup {
-    public class CoreDependencies : NinjectModule {
-        public override void Load() {
-            Bind<ILogger>().To<Logger>().InSingletonScope();
-            BindMainMenuLoaders();
-        }
-
-        private void BindMainMenuLoaders() {
-            var mainMenuNodeLoader = new NodeLoader(@"res://ScientiaMagica/src/Menus/MainMenu.tscn");
-            Bind(typeof(NodeLoader))
-                .ToConstant(mainMenuNodeLoader)
-                .Named("MainMenu");
-
-            var mainMenuScriptLoader = new ScriptLoader(null);
-            Bind<ScriptLoader>()
-                .ToConstant(mainMenuScriptLoader)
-                .Named("MainMenu");
-
-            Bind<IMainMenuButton>().To<ExitButtonLoader>();
-        }
+    public class CoreDependencies : InjectedPlugin {
+        public override PluginIdentifier Info { get; } =
+            new PluginIdentifier("ScientiaMagica Core", "ScientiaMagica.Core.Core", new Version(0, 1, 0));
     }
 }

@@ -1,7 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using DryIoc;
 using JetBrains.Annotations;
-using Ninject;
 
 namespace ScientiaMagica.Common.Loader {
     public interface IPlugin {
@@ -16,6 +15,12 @@ namespace ScientiaMagica.Common.Loader {
         [CanBeNull]
         IEnumerable<PluginIdentifier> LoadBefore { get; }
 
+        /// <summary>
+        /// This is what handles the initial dependency injection, plugins shouldn't override this themselves
+        /// </summary>
+        /// <param name="container">The DI container</param>
+        void Load(IContainer container);
+        
         /// <summary>
         /// This initialization function gets run concurrently along side every other plugin<br/>
         /// Do only internal setup or bad things happen

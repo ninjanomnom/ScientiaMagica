@@ -59,12 +59,6 @@
             <Version>1.0.0</Version>
             <PrivateAssets>All</PrivateAssets>
         </PackageReference>
-        <PackageReference Include="Ninject">
-            <Version>3.3.4</Version>
-        </PackageReference>
-        <PackageReference Include="Ninject.Extensions.Factory">
-            <Version>3.3.3</Version>
-        </PackageReference>
         <PackageReference Include="NLog">
             <Version>4.7.4</Version>
         </PackageReference>
@@ -76,7 +70,6 @@
         <Compile Include="ScientiaMagica\src\Menus\ExitButton.cs" />
         <Compile Include="ScientiaMagica\src\Menus\ExitButtonLoader.cs" />
         <Compile Include="ScientiaMagica\src\Menus\MainMenu.cs" />
-        <Compile Include="ScientiaMagica\src\Menus\MainMenuLoader.cs" />
         <Compile Include="ScientiaMagica\src\Setup\CoreDependencies.cs" />
         <Compile Include="ScientiaMagica\src\Setup\Setup.cs" />
     </ItemGroup>

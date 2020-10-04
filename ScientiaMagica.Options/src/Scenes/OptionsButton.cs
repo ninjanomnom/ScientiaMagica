@@ -8,9 +8,9 @@ using World = ScientiaMagica.Common.World;
 namespace ScientiaMagica.Options.Scenes {
     [UsedImplicitly]
     public class OptionsButton : Button {
-        private readonly OptionMenu _menu;
+        private readonly Lazy<OptionMenu> _menu;
         
-        public OptionsButton(OptionMenu menu) {
+        public OptionsButton(Lazy<OptionMenu> menu) {
             _menu = menu;
         }
         
@@ -19,7 +19,7 @@ namespace ScientiaMagica.Options.Scenes {
         }
 
         private void ButtonPressed() {
-            World.MainNode.AddChild(_menu);
+            World.MainNode.AddChild(_menu.Value);
         }
     }
 }

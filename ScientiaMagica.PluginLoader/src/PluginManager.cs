@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
-using Ninject;
 using ScientiaMagica.Common.Loader;
 using ScientiaMagica.Common.Loader.Attributes;
 using ScientiaMagica.Common.Loader.Exceptions;
@@ -80,7 +79,10 @@ namespace ScientiaMagica.PluginLoader {
                 }
             }
             
-            Parallel.ForEach(_sortedPlugins, InitializePlugin);
+            //Parallel.ForEach(_sortedPlugins, InitializePlugin);
+            foreach (var plugin in _sortedPlugins) {
+                InitializePlugin(plugin);
+            }
         }
     }
 }

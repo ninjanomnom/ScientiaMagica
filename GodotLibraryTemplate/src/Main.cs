@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using ScientiaMagica.Common.Loader;
 
 namespace GodotLibrary {
-    public class Main : InjectedPlugin<Main> {
+    public class Main : InjectedPlugin {
         // Required, this is for metadata relating to your plugin. Other mods use this to identify you.
         public override PluginIdentifier Info { get; }
 

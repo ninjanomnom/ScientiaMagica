@@ -1,5 +1,5 @@
 ﻿using System;
-using Ninject.Modules;
+using DryIoc;
 
 namespace ScientiaMagica.Common.Loader.Attributes {
     public class NamedInjectAttribute : Attribute, IPluginLoadAttribute {
@@ -11,8 +11,8 @@ namespace ScientiaMagica.Common.Loader.Attributes {
             _name = name;
         }
         
-        public void LoadType(NinjectModule module, Type holder) {
-            module.Bind(_bindingTarget).To(holder).Named(_name);
+        public void LoadType(IContainer container, Type holder) {
+            container.Register(_bindingTarget, holder);
         }
     }
 }

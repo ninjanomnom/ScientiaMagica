@@ -1,16 +1,15 @@
 using System;
 using Godot;
 using JetBrains.Annotations;
-using ScientiaMagica.Common.Loader.Attributes;
 using ScientiaMagica.Common.Signals;
 using World = ScientiaMagica.Common.World;
 
 namespace ScientiaMagica.Options.Scenes {
     [UsedImplicitly]
     public class OptionsButton : Button {
-        private readonly Lazy<OptionMenu> _menu;
+        private readonly Func<OptionMenu> _menu;
         
-        public OptionsButton(Lazy<OptionMenu> menu) {
+        public OptionsButton(Func<OptionMenu> menu) {
             _menu = menu;
         }
         
@@ -19,7 +18,7 @@ namespace ScientiaMagica.Options.Scenes {
         }
 
         private void ButtonPressed() {
-            World.MainNode.AddChild(_menu.Value);
+            World.MainNode.AddChild(_menu.Invoke());
         }
     }
 }

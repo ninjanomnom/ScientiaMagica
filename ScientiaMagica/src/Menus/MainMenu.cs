@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using Godot;
 using ScientiaMagica.Common.GodotExtensions;
 using ScientiaMagica.Common.GUI;
@@ -9,10 +10,10 @@ namespace ScientiaMagica.Menus {
         
         public MainMenu(IEnumerable<IMainMenuButton> buttons) {
             this.InheritSceneStructure(@"res://ScientiaMagica/src/Menus/MainMenu.tscn");
-            
+
             var container = GetNode<VBoxContainer>("MainPanel/MainContainer");
 
-            foreach (var button in buttons) {
+            foreach (var button in buttons.OrderBy(b => b.Priority)) {
                 container.AddChild(button.GetButton());
             }
         }

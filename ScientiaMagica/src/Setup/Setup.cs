@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
+using System.Security.Policy;
 using System.Threading.Tasks;
 using DryIoc;
 using Godot;
@@ -46,27 +47,29 @@ namespace ScientiaMagica.Setup {
                 Path.GetDirectoryName(Assembly.GetExecutingAssembly().CodeBase)
                 ?? throw new InvalidOperationException("Assembly somehow not in a directory")
             ).AbsolutePath;
-            
-            var dllFiles = new string[] { }
+
+            var assemblies = new string[] { }
                 .Concat(Directory.GetFiles(directory, @"ScientiaMagica*.dll"))
                 .Concat(Directory.GetFiles(directory, @"*.Main.dll"))
                 .Select(s => new Uri(s).AbsolutePath)
-                .Select(Assembly.LoadFile);
+                .Select(GetPluginAssembly);
 
-            foreach (var assembly in dllFiles)
-            foreach (var def in assembly.GetTypes()) {
-                if (!def.ImplementsServiceType<IPlugin>()) {
+            foreach (var assembly in assemblies)
+            foreach (var pluginType in assembly.GetTypes()) {
+                if (!pluginType.ImplementsServiceType<IPlugin>()) {
                     continue;
-                };
+                } 
                 
-                var instance = Activator.CreateInstance(def) as IPlugin;
+                var instance = Activator.CreateInstance(pluginType) as IPlugin;
                 instance?.Load(_container);
             }
         }
 
-        private bool IsRegisterEntrant(Type someType) {
-            var result = someType.ImplementsServiceType<IPlugin>();
-            return result;
+        private Assembly GetPluginAssembly(string path) {
+            return AppDomain.CurrentDomain
+                .GetAssemblies()
+                .SingleOrDefault(a => a.Location == path)
+                ?? Assembly.LoadFile(path);
         }
 
         public void InitializeGame() {
@@ -98,12 +101,7 @@ namespace ScientiaMagica.Setup {
         }
         
         public void LoadMenu() {
-            var buttons = _container.Resolve<IEnumerable<IMainMenuButton>>();
-            var test = new CanvasLayer();
-
-            var mainMenu = new MainMenu(buttons);
-            
-            //var mainMenu = _container.Resolve<MainMenu>();
+            var mainMenu = _container.Resolve<MainMenu>();
             World.SwitchScene(mainMenu);
         }
     }

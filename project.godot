@@ -19,6 +19,12 @@ config/name="ScientiaMagica"
 run/main_scene="res://ScientiaMagica/src/Main.tscn"
 config/icon="res://icon.png"
 
+[physics]
+
+2d/thread_model=2
+2d/default_gravity=0
+2d/default_gravity_vector=Vector2( 0, 0 )
+
 [rendering]
 
 threads/thread_model=2

@@ -49,6 +49,8 @@
         <Compile Include="src\Main.cs" />
         <Compile Include="src\Scenes\LoadGameButton.cs" />
         <Compile Include="src\Scenes\NewGameButton.cs" />
+        <Compile Include="src\Scenes\Player.cs" />
+        <Compile Include="src\Scenes\WindowBoundingBox.cs" />
     </ItemGroup>
     <ItemGroup>
       <ProjectReference Include="..\ScientiaMagica.Common\ScientiaMagica.Common.csproj">
@@ -57,7 +59,7 @@
       </ProjectReference>
     </ItemGroup>
     <ItemGroup>
-      <Content Include="src\Scenes\NewGameButton.tscn" />
+        <Content Include="**/*.tscn" />
     </ItemGroup>
     <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
     <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

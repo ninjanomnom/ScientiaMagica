@@ -7,7 +7,7 @@ namespace ScientiaMagica.Game.Scenes {
     public class LoadGameButton : Button {
         public LoadGameButton() {
             this.SetPropertiesFromScene(@"res://ScientiaMagica.Game/src/Scenes/LoadGameButton.tscn");
-            // TODO: Assign new game menu here
+            // TODO: Assign laod game menu here
         }
 
         public override void _Ready() {

@@ -1,12 +1,19 @@
-﻿using Godot;
+﻿using System;
+using Godot;
 using ScientiaMagica.Common.GodotExtensions;
 using ScientiaMagica.Common.Signals;
+using Thread = System.Threading.Thread;
 
 namespace ScientiaMagica.Game.Scenes {
     public class NewGameButton : Button {
-        public NewGameButton() {
-            this.SetPropertiesFromScene(@"res://ScientiaMagica.Game/src/Scenes/NewGameButton.tscn");
-            // TODO: Assign new game menu here
+        private readonly WindowBoundingBox _windowBounds;
+        private readonly Lazy<Player> _player;
+        
+        public NewGameButton(WindowBoundingBox windowBounds, Lazy<Player> player) {
+            this.InheritSceneStructure(@"res://ScientiaMagica.Game/src/Scenes/NewGameButton.tscn");
+            
+            _windowBounds = windowBounds;
+            _player = player;
         }
 
         public override void _Ready() {
@@ -14,7 +21,11 @@ namespace ScientiaMagica.Game.Scenes {
         }
 
         private void ButtonPressed() {
-            // TODO: World.SwitchScene(_menu);
+            Common.World.MainNode.AddChild(_windowBounds);
+            
+            var initialPosition = new Vector2(50, 50).Normalized();
+            Common.World.MainNode.AddChild(_player.Value);
+            _player.Value.CallDeferred("set", "position", initialPosition);
         }
     }
 }

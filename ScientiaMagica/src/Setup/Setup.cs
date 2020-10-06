@@ -102,7 +102,7 @@ namespace ScientiaMagica.Setup {
         
         public void LoadMenu() {
             var mainMenu = _container.Resolve<MainMenu>();
-            World.SwitchScene(mainMenu);
+            World.MainNode.AddChild(mainMenu);
         }
     }
 }

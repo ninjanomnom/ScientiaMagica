@@ -17,7 +17,14 @@ namespace ScientiaMagica.Common.GodotExtensions {
                 "__meta__",
                 "script",
                 "rect_global_position",
-                "custom_viewport"
+                "custom_viewport",
+                "global_position",
+                "global_rotation",
+                "global_rotation_degrees",
+                "global_scale",
+                "global_transform",
+                "friction",
+                "bounce"
             };
             
             internal ObjectCopyIntermediate(T node) {

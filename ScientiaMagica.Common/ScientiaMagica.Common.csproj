@@ -75,6 +75,7 @@
         <Compile Include="src\GUI\MainMenuButton.cs" />
         <Compile Include="src\Resources\NodeLoader.cs" />
         <Compile Include="src\Resources\ScriptLoader.cs" />
+        <Compile Include="src\Signals\Area2DSignals.cs" />
         <Compile Include="src\Signals\ButtonSignals.cs" />
         <Compile Include="src\World.cs" />
     </ItemGroup>

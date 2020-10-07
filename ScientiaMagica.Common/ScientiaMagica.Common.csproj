@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
     <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
     <PropertyGroup>
@@ -45,6 +45,9 @@
     </ItemGroup>
     <ItemGroup>
         <Compile Include="Properties\AssemblyInfo.cs" />
+        <Compile Include="src\Assets\AssetTemplate.cs">
+          <DependentUpon>AssetTemplate.tt</DependentUpon>
+        </Compile>
         <Compile Include="src\GodotExtensions\GodotNodeExtensions.cs" />
         <Compile Include="src\GodotExtensions\GodotObjectExtensions.cs" />
         <Compile Include="src\GodotExtensions\PackedSceneExtensions.cs" />
@@ -97,6 +100,15 @@
         <PackageReference Include="NLog">
             <Version>4.7.4</Version>
         </PackageReference>
+    </ItemGroup>
+    <ItemGroup>
+      <None Include="src\Assets\AssetTemplate.tt">
+        <Generator>TextTemplatingFileGenerator</Generator>
+        <LastGenOutput>AssetTemplate.cs</LastGenOutput>
+      </None>
+    </ItemGroup>
+    <ItemGroup>
+      <Content Include="src\Assets\README.md" />
     </ItemGroup>
     <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
     <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

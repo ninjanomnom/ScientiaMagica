@@ -6,8 +6,8 @@ using ScientiaMagica.Common.Loader.Attributes;
 using ScientiaMagica.Options.Scenes;
 
 namespace ScientiaMagica.Options {
-    [DefaultInject(typeof(IMainMenuButton))]
-    public class OptionButtonLoader : IMainMenuButton {
+    [DefaultInject(typeof(IMainMenuButtonLoader))]
+    public class OptionButtonLoader : IMainMenuButtonLoader {
         public MainMenuPriorityOrder Priority { get; } = MainMenuPriorityOrder.Middle;
 
         private readonly Button _button;

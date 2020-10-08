@@ -1,5 +1,6 @@
 ﻿using Godot;
 using JetBrains.Annotations;
+using ScientiaMagica.Common.Assets;
 using ScientiaMagica.Common.GUI;
 
 namespace ScientiaMagica.Common.GodotExtensions {
@@ -57,8 +58,12 @@ namespace ScientiaMagica.Common.GodotExtensions {
         [PublicAPI]
         public static void InheritSceneStructure(this Node src, string sceneLocation) {
             var scene = ResourceLoader.Load<PackedScene>(sceneLocation).Instance();
-            src.SetPropertiesFromScene(scene);
-            scene.MoveAllChildren(src);
+            src.InheritSceneStructure(scene);
+        }
+
+        public static void InheritSceneStructure(this Node src, Node loadedScene) {
+            src.SetPropertiesFromScene(loadedScene);
+            loadedScene.MoveAllChildren(src);
         }
     }
 }

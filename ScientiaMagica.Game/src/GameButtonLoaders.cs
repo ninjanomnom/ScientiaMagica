@@ -5,8 +5,8 @@ using ScientiaMagica.Common.Loader.Attributes;
 using ScientiaMagica.Game.Scenes;
 
 namespace ScientiaMagica.Game {
-    [DefaultInject(typeof(IMainMenuButton))]
-    public class NewGameButtonLoader : IMainMenuButton {
+    [DefaultInject(typeof(IMainMenuButtonLoader))]
+    public class NewGameButtonLoader : IMainMenuButtonLoader {
         public MainMenuPriorityOrder Priority { get; } = MainMenuPriorityOrder.Top;
 
         private readonly Button _button;
@@ -20,8 +20,8 @@ namespace ScientiaMagica.Game {
         }
     }
 
-    [DefaultInject(typeof(IMainMenuButton))]
-    public class LoadGameButtonLoader : IMainMenuButton {
+    [DefaultInject(typeof(IMainMenuButtonLoader))]
+    public class LoadGameButtonLoader : IMainMenuButtonLoader {
         public MainMenuPriorityOrder Priority { get; } = MainMenuPriorityOrder.Middle;
 
         private readonly Button _button;

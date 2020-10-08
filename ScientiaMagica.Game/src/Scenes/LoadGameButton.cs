@@ -6,7 +6,7 @@ using ScientiaMagica.Common.Signals;
 namespace ScientiaMagica.Game.Scenes {
     public class LoadGameButton : Button {
         public LoadGameButton() {
-            this.SetPropertiesFromScene(@"res://ScientiaMagica.Game/src/Scenes/LoadGameButton.tscn");
+            this.InheritSceneStructure(Common.Assets.Scenes.LoadGameButton.Instance());
             // TODO: Assign laod game menu here
         }
 

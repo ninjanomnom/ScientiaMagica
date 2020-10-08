@@ -13,7 +13,7 @@ namespace ScientiaMagica.Options {
         private readonly TabContainer _tabs;
         
         public OptionMenu(IEnumerable<IOptionEntry> entries) {
-            this.InheritSceneStructure("res://ScientiaMagica.Options/src/Scenes/OptionsMenu.tscn");
+            this.InheritSceneStructure(Common.Assets.Scenes.OptionsMenu.Instance());
             
             _categories = new Dictionary<string, Panel>();
 

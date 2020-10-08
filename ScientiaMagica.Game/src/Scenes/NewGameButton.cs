@@ -10,7 +10,7 @@ namespace ScientiaMagica.Game.Scenes {
         private readonly Lazy<Player> _player;
         
         public NewGameButton(WindowBoundingBox windowBounds, Lazy<Player> player) {
-            this.InheritSceneStructure(@"res://ScientiaMagica.Game/src/Scenes/NewGameButton.tscn");
+            this.InheritSceneStructure(Common.Assets.Scenes.NewGameButton.Instance());
             
             _windowBounds = windowBounds;
             _player = player;
@@ -24,8 +24,8 @@ namespace ScientiaMagica.Game.Scenes {
             Common.World.MainNode.AddChild(_windowBounds);
             
             var initialPosition = new Vector2(50, 50).Normalized();
+            _player.Value.QueuePosition(initialPosition);
             Common.World.MainNode.AddChild(_player.Value);
-            _player.Value.CallDeferred("set", "position", initialPosition);
         }
     }
 }

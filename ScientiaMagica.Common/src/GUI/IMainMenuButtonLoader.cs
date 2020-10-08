@@ -1,7 +1,7 @@
 ﻿using Godot;
 
 namespace ScientiaMagica.Common.GUI {
-    public interface IMainMenuButton {
+    public interface IMainMenuButtonLoader {
         MainMenuPriorityOrder Priority { get; }
 
         Button GetButton();

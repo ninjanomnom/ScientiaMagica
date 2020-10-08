@@ -3,8 +3,8 @@ using ScientiaMagica.Common.GUI;
 using ScientiaMagica.Common.Loader.Attributes;
 
 namespace ScientiaMagica.Menus {
-    [DefaultInject(typeof(IMainMenuButton))]
-    public class ExitButtonLoader : IMainMenuButton {
+    [DefaultInject(typeof(IMainMenuButtonLoader))]
+    public class ExitButtonLoader : IMainMenuButtonLoader {
         private readonly ExitButton _exitButton;
 
         public ExitButtonLoader(ExitButton button) {

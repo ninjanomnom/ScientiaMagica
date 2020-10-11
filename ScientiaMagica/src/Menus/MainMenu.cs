@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Godot;
@@ -6,17 +7,27 @@ using ScientiaMagica.Common.GodotExtensions;
 using ScientiaMagica.Common.GUI;
 
 namespace ScientiaMagica.Menus {
-    public class MainMenu : CanvasLayer {
-        public MainMenu() : this(new IMainMenuButtonLoader[] { }) { }
+    public class MainMenu : CanvasLayer, IMainMenu {
+        private readonly Panel _mainPanel;
         
-        public MainMenu(IEnumerable<IMainMenuButtonLoader> buttons) {
+        public MainMenu(IEnumerable<MainMenuButton> buttons) {
             this.InheritSceneStructure(Scenes.MainMenu.Instance());
-
-            var container = GetNode<VBoxContainer>("MainPanel/MainContainer");
+            
+            _mainPanel = GetNode<Panel>("MainPanel");
+            var container = _mainPanel.GetNode<VBoxContainer>("MainContainer");
 
             foreach (var button in buttons.OrderBy(b => b.Priority)) {
-                container.AddChild(button.GetButton());
+                button.ConnectToMenu(this);
+                container.AddChild(button);
             }
+        }
+
+        public void Hide() {
+            _mainPanel.Hide();
+        }
+        
+        public void Show() {
+            _mainPanel.Show();
         }
     }
 }

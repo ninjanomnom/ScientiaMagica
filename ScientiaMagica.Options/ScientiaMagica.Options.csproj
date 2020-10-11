@@ -49,7 +49,6 @@
     <ItemGroup>
         <Compile Include="Properties\AssemblyInfo.cs" />
         <Compile Include="src\Main.cs" />
-        <Compile Include="src\OptionButtonLoader.cs" />
         <Compile Include="src\OptionEntry.cs" />
         <Compile Include="src\OptionMenu.cs" />
         <Compile Include="src\Scenes\OptionsButton.cs" />

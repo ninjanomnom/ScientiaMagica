@@ -2,11 +2,15 @@
 using JetBrains.Annotations;
 using ScientiaMagica.Common.Assets;
 using ScientiaMagica.Common.GodotExtensions;
+using ScientiaMagica.Common.GUI;
+using ScientiaMagica.Common.Loader.Attributes;
 using ScientiaMagica.Common.Signals;
 
 namespace ScientiaMagica.Menus {
-    [UsedImplicitly]
-    public class ExitButton : Button {
+    [DefaultInject(typeof(MainMenuButton))]
+    public class ExitButton : MainMenuButton {
+        public override MainMenuPriorityOrder Priority { get; protected set; } = MainMenuPriorityOrder.End;
+
         public ExitButton() {
             this.InheritSceneStructure(Scenes.ExitButton.Instance());
         }

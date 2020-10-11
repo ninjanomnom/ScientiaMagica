@@ -61,7 +61,7 @@ namespace ScientiaMagica.Common.GodotExtensions {
             src.InheritSceneStructure(scene);
         }
 
-        public static void InheritSceneStructure(this Node src, Node loadedScene) {
+        public static void InheritSceneStructure<T>(this T src, T loadedScene) where T : Node {
             src.SetPropertiesFromScene(loadedScene);
             loadedScene.MoveAllChildren(src);
         }

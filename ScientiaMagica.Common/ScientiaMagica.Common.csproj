@@ -53,7 +53,7 @@
         <Compile Include="src\GodotExtensions\GodotObjectExtensions.cs" />
         <Compile Include="src\GodotExtensions\PackedSceneExtensions.cs" />
         <Compile Include="src\GUI\DefaultSceneLoader.cs" />
-        <Compile Include="src\GUI\IMainMenuButtonLoader.cs" />
+        <Compile Include="src\GUI\IMainMenu.cs" />
         <Compile Include="src\GUI\MainMenuButton.cs" />
         <Compile Include="src\Loader\Attributes\DefaultInjectAttribute.cs" />
         <Compile Include="src\Loader\Attributes\IPluginLoadAttribute.cs" />

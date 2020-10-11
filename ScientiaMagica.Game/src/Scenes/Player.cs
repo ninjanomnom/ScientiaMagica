@@ -16,16 +16,18 @@ namespace ScientiaMagica.Game.Scenes {
         }
 
         public override void _IntegrateForces(Physics2DDirectBodyState state) {
-            if (_queuedNewLocation.HasValue) {
-                Mode = ModeEnum.Kinematic;
-                Position = _queuedNewLocation.Value;
-            } else if (Mode == ModeEnum.Kinematic) {
-                Mode = ModeEnum.Rigid;
+            if (!_queuedNewLocation.HasValue) {
+                return;
             }
+            
+            Position = _queuedNewLocation.Value;
+            _queuedNewLocation = null;
+            Mode = ModeEnum.Rigid;
         }
 
         public void QueuePosition(Vector2 newLoc) {
             _queuedNewLocation = newLoc;
+            Mode = ModeEnum.Static;
         }
     }
 }

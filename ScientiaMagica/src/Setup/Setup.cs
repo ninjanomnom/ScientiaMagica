@@ -33,6 +33,9 @@ namespace ScientiaMagica.Setup {
             _logger = LogManager.GetCurrentClassLogger();
         }
 
+        /// <summary>
+        /// Checks filesystem for plugins and loads them
+        /// </summary>
         public void LoadPlugins() {
             LoadDependencies();
             var pluginManager = _container.Resolve<IPluginManager>();
@@ -72,6 +75,9 @@ namespace ScientiaMagica.Setup {
                 ?? Assembly.LoadFile(path);
         }
 
+        /// <summary>
+        /// Gets all the initializers added by plugins and runs them
+        /// </summary>
         public void InitializeGame() {
             var worldInitializers = 
                 _container.ResolveMany<IWorldInitializer>().OrderBy(i => i.InitPriority);

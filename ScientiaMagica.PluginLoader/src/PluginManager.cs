@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -25,6 +25,10 @@ namespace ScientiaMagica.PluginLoader {
             MissingDependencies = new ReadOnlyCollection<PluginIdentifier>(_missingDependencies);
         }
         
+        /// <summary>
+        /// Adds and sorts a plugin to be loaded at a later date
+        /// </summary>
+        /// <param name="plugin"></param>
         public void AddPlugin(IPlugin plugin) {
             if (_loaded) {
                 throw new AlreadyInitializedException("The plugin manager is already initialized, plugins can no longer be added");
@@ -54,6 +58,9 @@ namespace ScientiaMagica.PluginLoader {
             }
         }
 
+        /// <summary>
+        /// Loads all plugins queued to be loaded, once this is started no more plugins can be added
+        /// </summary>
         public void LoadPlugins() {
             if (_missingDependencies.Any()) {
                 throw new AggregateException(_missingDependencies.Select(p =>

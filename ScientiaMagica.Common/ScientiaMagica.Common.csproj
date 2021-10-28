@@ -49,6 +49,11 @@
         <Compile Include="src\Assets\AssetTemplate.cs">
           <DependentUpon>AssetTemplate.tt</DependentUpon>
         </Compile>
+        <Compile Include="src\Assets\StructuredAssetTemplate.cs">
+          <AutoGen>True</AutoGen>
+          <DesignTime>True</DesignTime>
+          <DependentUpon>StructuredAssetTemplate.tt</DependentUpon>
+        </Compile>
         <Compile Include="src\GodotExtensions\GodotNodeExtensions.cs" />
         <Compile Include="src\GodotExtensions\GodotObjectExtensions.cs" />
         <Compile Include="src\GodotExtensions\PackedSceneExtensions.cs" />
@@ -99,6 +104,11 @@
         <PackageReference Include="JetBrains.Annotations">
           <Version>2020.1.0</Version>
         </PackageReference>
+        <PackageReference Include="Microsoft.NETFramework.ReferenceAssemblies.net48">
+          <Version>1.0.0</Version>
+          <PrivateAssets>all</PrivateAssets>
+          <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+        </PackageReference>
         <PackageReference Include="NLog">
             <Version>4.7.4</Version>
         </PackageReference>
@@ -112,6 +122,11 @@
     <ItemGroup>
       <Content Include="src\Assets\LICENSE" />
       <Content Include="src\Assets\README.md" />
+      <Content Include="src\Assets\ParsedScene.ttinclude" />
+      <None Include="src\Assets\StructuredAssetTemplate.tt">
+        <Generator>TextTemplatingFileGenerator</Generator>
+        <LastGenOutput>StructuredAssetTemplate.cs</LastGenOutput>
+      </None>
     </ItemGroup>
     <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
     <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

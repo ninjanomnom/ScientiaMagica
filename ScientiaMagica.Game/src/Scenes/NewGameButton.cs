@@ -35,7 +35,7 @@ namespace ScientiaMagica.Game.Scenes {
             
             Common.World.MainNode.AddChild(_windowBounds);
             
-            var initialPosition = new Vector2(50, 50).Normalized();
+            var initialPosition = new Vector2(50, 50);
             _player.Value.QueuePosition(initialPosition);
             Common.World.MainNode.AddChild(_player.Value);
         }

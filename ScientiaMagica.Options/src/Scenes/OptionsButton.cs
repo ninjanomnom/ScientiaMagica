@@ -1,15 +1,16 @@
 using System;
-using ScientiaMagica.Common;
+using Godot;
 using ScientiaMagica.Common.GodotExtensions;
 using ScientiaMagica.Common.GUI;
 using ScientiaMagica.Common.Loader.Attributes;
 using ScientiaMagica.Common.Signals;
+using World = ScientiaMagica.Common.World;
 
 namespace ScientiaMagica.Options.Scenes {
     [DefaultInject(typeof(MainMenuButton))]
     public class OptionsButton : MainMenuButton {
         private readonly Func<OptionMenu> _menu;
-        
+
         public OptionsButton(Func<OptionMenu> menu) {
             this.InheritSceneStructure(Common.Assets.Scenes.OptionsButton.Instance());
             _menu = menu;

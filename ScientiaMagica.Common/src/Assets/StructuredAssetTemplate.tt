@@ -4,34 +4,48 @@
 <#@ import namespace="System.IO" #>
 <#@ import namespace="System.Linq" #>
 <#@ import namespace="System.Reflection" #>
-<#@ import namespace="System.Text.RegularExpressions" #>
 <#@ import namespace="System.Collections.Generic" #>
+<#@ include file="ParsedScene.ttinclude" #><#@ import namespace="System.Text" #>
 using Godot;
 
-namespace ScientiaMagica.Common.Assets {
-    public struct Scenes {
-        <#
+namespace <#
+    // Get the base directory of the godot project and the namespace for this file
+    var directoriesToSkipNamespace = new string[] {
+        "src"
+    };
+    var namespaceBuild = new List<string> { };
+    void AddToNamespace(string segment) {
+        if (directoriesToSkipNamespace.Contains(segment)) {
+            return;
+        }
+        
+        namespaceBuild.Add(segment);
+    }
+
     var ourLocation = System.IO.Path.GetFullPath(Host.ResolvePath("Assets\\.."));
     while (!System.IO.Directory.GetFiles(ourLocation, "*.godot").Any()) {
+        AddToNamespace(Path.GetFileName(ourLocation));
         ourLocation = System.IO.Path.GetDirectoryName(ourLocation);
         if (ourLocation == null) {
             throw new InvalidOperationException("Asset T4 builder is not in the directory of a godot project");
         }
     }
 
-    var baseLocation = new Uri(ourLocation);
-    var output = new List<string>();
+    namespaceBuild.Reverse();
     
+    Write(string.Join(".", namespaceBuild));
+    #> {
+<#
+    var baseLocation = new Uri(ourLocation);
+
     foreach (var file in System.IO.Directory.EnumerateFiles(ourLocation, "*.tscn", SearchOption.AllDirectories)) {
+        var scene = new ParsedScene(File.ReadAllText(file));
+        scene.Process();
+        
         var relative = baseLocation.MakeRelativeUri(new Uri(file)).OriginalString;
         relative = Regex.Replace(relative, @"^.+?[\\/]", @"res://");
+        
         var name = System.IO.Path.GetFileNameWithoutExtension(file);
-
-        var assetType = Regex.Match(System.IO.File.ReadAllText(file), @"\[\s?node.+?type=""(.+?)\""").Groups[1];
-        output.Add($"public static readonly SceneLoader<{assetType}> {name} = new SceneLoader<{assetType}>(\"{relative}\");");
     }
-    
-    Write(string.Join("\n\t\t", output));#>
-    
-    }
+#>
 }

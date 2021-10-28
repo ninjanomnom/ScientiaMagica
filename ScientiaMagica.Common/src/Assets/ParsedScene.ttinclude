@@ -1,0 +1,114 @@
+﻿<#@ assembly name="System"#>
+<#@ assembly name="System.Linq"#>
+<#@ assembly name="System.Text.RegularExpressions"#>
+<#@ assembly name="System.Collections"#>
+<#@ import namespace="System.Collections.Generic" #>
+<#@ import namespace="System.Text.RegularExpressions" #>
+<#+
+    public class ParsedScene {
+        private readonly string _rawFileContents;
+
+        public readonly List<SceneBlock> _blocks = new List<SceneBlock>();
+        
+        public ParsedScene(string rawFileContents) {
+            _rawFileContents = rawFileContents;
+        }
+
+        public void Process() {
+            if (_blocks.Count != 0) {
+                return;
+            }
+            
+            var stringBuilder = new StringBuilder();
+            void AddBlock() {
+                var blockString = stringBuilder.ToString();
+                if (string.IsNullOrWhiteSpace(blockString)) {
+                    return;
+                }
+                
+                var newBlock = SceneBlock.ParseRawBlock(blockString);
+                if (newBlock != null) {
+                    _blocks.Add(newBlock);
+                }
+                
+                stringBuilder.Clear();
+            }
+            
+            foreach (var line in _rawFileContents.Split('\n')) {
+                if (line.StartsWith("[")) {
+                    AddBlock();
+                }
+                stringBuilder.AppendLine(line.Trim());
+            }
+            AddBlock();
+        }
+    }
+
+    public abstract class SceneBlock {
+        private static readonly Dictionary<string, Func<IDictionary<string, string>, IEnumerable<string>, SceneBlock>> ViableBlocks =
+            new Dictionary<string, Func<IDictionary<string, string>, IEnumerable<string>, SceneBlock>> {
+                { "node", (attr, body) => new NodeBlock(attr, body)}
+            };
+        
+        public static SceneBlock ParseRawBlock(string blockContents) {
+            var lines = blockContents.Split('\n');
+            var declaration = lines[0];
+            var body = lines.Skip(1);
+
+            var decParts = declaration
+                .Trim('[', ']', '\r')
+                .Split(' ');
+
+            var blockType = decParts[0];
+            var blockAttributes = decParts
+                .Skip(1)
+                .Where(s => !string.IsNullOrWhiteSpace(s))
+                .Select(s => s.Split('='))
+                .ToDictionary(s => s[0], s => s[1]);
+
+            return !ViableBlocks.TryGetValue(blockType, out var blockCreator)
+                ? null
+                : blockCreator.Invoke(blockAttributes, body);
+        }
+    }
+
+    public class NodeBlock : SceneBlock {
+        public NodeBlock? Parent { get; }
+        public List<NodeBlock> Children { get; } = new List<NodeBlock>();
+        
+        public string Name { get; }
+        public string NodeType { get; }
+        
+        private readonly IDictionary<string, string> _attributes;
+        private readonly IEnumerable<string> _body;
+        
+        public NodeBlock(IDictionary<string, string> attributes, IEnumerable<string> body, NodeBlock? root) {
+            _attributes = attributes;
+            _body = body;
+
+            attributes.TryGetValue("parent", out var parent);
+            if (parent == ".") {
+                Parent = root;
+            }
+            else {
+                Parent = root?.Children.Single(n => n.Name == parent)
+                    ?? throw new Exception($"Parent '{parent}' could not be found");
+            }
+            
+            attributes.TryGetValue("name", out var name);
+            Name = name;
+
+            attributes.TryGetValue("type", out var nodeType);
+            NodeType = nodeType;
+        }
+
+        public string GetReference() {
+            return $"public {NodeType} {Name} = GetNode<{NodeType}>({GetReferencePath()});";
+        }
+
+        private string GetReferencePath() {
+            var parentPath = $"{Parent?.GetReferencePath()}/" ?? "";
+            return $"{parentPath}{Name}";
+        }
+    }
+#>
